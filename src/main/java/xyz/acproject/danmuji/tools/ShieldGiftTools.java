@@ -40,9 +40,9 @@ public class ShieldGiftTools {
 					if(StringUtils.isBlank(PublicDataConf.MEDALINFOANCHOR.getMedal_name())){
 						break;
 					}
-					//舰长的这里是空的
+					//跳过感谢未佩戴勋章的用户
 					if(gift.getMedal_info()==null){
-						break;
+						return null;
 					}
 					if(!PublicDataConf.MEDALINFOANCHOR.getMedal_name().equals(gift.getMedal_info().getMedal_name())){
 /*						LOGGER.info("礼物感谢姬人员屏蔽[勋章模式]:{}", gift.getMedal_info().getMedal_name());*/

@@ -1416,9 +1416,9 @@ public class ParseMessageThread extends Thread {
                     if (StringUtils.isBlank(PublicDataConf.MEDALINFOANCHOR.getMedal_name())) {
                         break;
                     }
-                    //舰长的这里是空的
+                    //跳过回复未佩戴勋章的用户
                     if (barrage.getMedal_name() == null) {
-                        break;
+                        return false;
                     }
                     if (!PublicDataConf.MEDALINFOANCHOR.getMedal_name().equals(barrage.getMedal_name())) {
                         //    LOGGER.info("自动回复姬人员屏蔽[勋章模式]:{}", barrage.getMedal_name());
@@ -1620,9 +1620,9 @@ public class ParseMessageThread extends Thread {
                         if (StringUtils.isBlank(PublicDataConf.MEDALINFOANCHOR.getMedal_name())) {
                             break;
                         }
-                        //舰长的这里是空的
+                        //跳过欢迎未佩戴勋章的用户
                         if (interact.getFans_medal() == null) {
-                            break;
+                            return;
                         }
                         if (!PublicDataConf.MEDALINFOANCHOR.getMedal_name().equals(interact.getFans_medal().getMedal_name())) {
 //                           LOGGER.info("欢迎姬人员屏蔽[勋章模式]:{}", interact.getFans_medal().getMedal_name());

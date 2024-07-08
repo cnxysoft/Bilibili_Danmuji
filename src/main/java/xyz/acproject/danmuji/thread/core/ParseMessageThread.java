@@ -94,6 +94,7 @@ public class ParseMessageThread extends Thread {
                     message = PublicDataConf.resultStrs.get(0);
                     try {
                         jsonObject = JSONObject.parseObject(message);
+                        // LOGGER.info(jsonObject.toJSONString());
                     } catch (Exception e) {
                         // TODO: handle exception
                         LOGGER.info("抛出解析异常:" + e);
@@ -140,15 +141,15 @@ public class ParseMessageThread extends Thread {
                                         ((JSONArray) array.get(4)).getShort(0), ((JSONArray) array.get(4)).getString(3),
                                         ((JSONArray) array.get(5)).getString(0), ((JSONArray) array.get(5)).getString(1),
                                         array.getShort(7),
-                                        JSONObject.parseObject(((JSONArray) array.get(0)).getString(13)).getString("emoticon_unique"),
-                                        JSONObject.parseObject(((JSONArray) array.get(0)).getString(13)).getString("url"));
+                                        "{}".equals(((JSONArray) array.get(0)).getString(13)) ? ((JSONArray) array.get(0)).getString(13) : JSONObject.parseObject(((JSONArray) array.get(0)).getString(13)).getString("emoticon_unique"),
+                                        "{}".equals(((JSONArray) array.get(0)).getString(13)) ? ((JSONArray) array.get(0)).getString(13) : JSONObject.parseObject(((JSONArray) array.get(0)).getString(13)).getString("url"));
                             } catch (Exception e) {
                                 // TODO: handle exception
                                 LOGGER.error("弹幕体解析抛出解析异常体:{}" ,array);
                                 e.printStackTrace();
                                 break;
                             }
-                            LOGGER.error("弹幕体解析体:{}", array);
+                            // LOGGER.error("弹幕体解析体:{}", array);
                             //是否开启弹幕
                             boolean is_barrage = getCenterSetConf().is_barrage();
                             // 勋章弹幕

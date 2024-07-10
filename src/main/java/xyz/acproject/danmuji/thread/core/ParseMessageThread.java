@@ -139,13 +139,14 @@ public class ParseMessageThread extends Thread {
                                         ((JSONArray) array.get(3)).size() <= 0 ? "" : ((JSONArray) array.get(3)).getString(2),
                                         ((JSONArray) array.get(3)).size() <= 0 ? 0L : ((JSONArray) array.get(3)).getLong(3),
                                         ((JSONArray) array.get(4)).getShort(0), ((JSONArray) array.get(4)).getString(3),
-                                        ((JSONArray) array.get(5)).getString(0), ((JSONArray) array.get(5)).getString(1),
+                                        ((JSONArray) array.get(5)).size() <= 0 ? "" : ((JSONArray) array.get(5)).getString(0),
+                                        ((JSONArray) array.get(5)).size() <= 0 ? "" : ((JSONArray) array.get(5)).getString(1),
                                         array.getShort(7),
                                         "{}".equals(((JSONArray) array.get(0)).getString(13)) ? ((JSONArray) array.get(0)).getString(13) : JSONObject.parseObject(((JSONArray) array.get(0)).getString(13)).getString("emoticon_unique"),
                                         "{}".equals(((JSONArray) array.get(0)).getString(13)) ? ((JSONArray) array.get(0)).getString(13) : JSONObject.parseObject(((JSONArray) array.get(0)).getString(13)).getString("url"));
                             } catch (Exception e) {
                                 // TODO: handle exception
-                                LOGGER.error("弹幕体解析抛出解析异常体:{}" ,array);
+                                LOGGER.error("弹幕体解析抛出解析异常体:{}" ,jsonObject);
                                 e.printStackTrace();
                                 break;
                             }

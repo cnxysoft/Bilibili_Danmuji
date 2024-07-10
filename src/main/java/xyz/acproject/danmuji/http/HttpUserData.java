@@ -529,7 +529,9 @@ public class HttpUserData {
                 LOGGER.error("发送弹幕失败,原因:" + jsonObject.getString("message"));
             } else if (code == 11000) {
                 LOGGER.error("发送弹幕失败,原因:弹幕含有关键字或者弹幕颜色不存在:" + jsonObject.getString("message"));
-            } else {
+            } else if (code == 10031) {
+                LOGGER.error("发送弹幕失败,原因:" + jsonObject.getString("message"));
+        }else {
                 LOGGER.error("发送弹幕失败,未知错误,原因未知" + jsonObject.toString());
             }
         } else {

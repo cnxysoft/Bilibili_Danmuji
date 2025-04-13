@@ -41,19 +41,23 @@ public class HttpOtherData {
         datas.put("edition", PublicDataConf.VERSION);
         datas.put("time", String.valueOf(System.currentTimeMillis()));
         try {
+            // data = OkHttp3Utils.getHttp3Utils()
+            //         .httpGet("http://bilibili.acproject.xyz/getEdition", headers, datas)
+            //         .body().string();
             data = OkHttp3Utils.getHttp3Utils()
-                    .httpGet("http://bilibili.acproject.xyz/getEdition", headers, datas)
-                    .body().string();
+                .httpGet("https://cloud.znin.net/%E4%B8%B4%E6%97%B6/danmuji_neweditioin", headers, null)
+                .body().string();
             if (data == null)
                 return edition;
-            jsonObject = JSONObject.parseObject(data);
-            code = jsonObject.getString("code");
-            if (code.equals("200")) {
-                edition = ((JSONObject) jsonObject.get("result")).getString("value");
-                PublicDataConf.NEW_VERSION = edition;
-            } else {
-                LOGGER.error("未知错误,原因:" + jsonObject.getString("msg"));
-            }
+            // jsonObject = JSONObject.parseObject(data);
+            // code = jsonObject.getString("code");
+            // if (code.equals("200")) {
+            //     edition = ((JSONObject) jsonObject.get("result")).getString("value");
+            //     PublicDataConf.NEW_VERSION = edition;
+            // } else {
+            //     LOGGER.error("未知错误,原因:" + jsonObject.getString("msg"));
+            // }
+            edition = data;
         } catch (Exception e) {
             // TODO 自动生成的 catch 块
             LOGGER.error(e);
@@ -79,18 +83,22 @@ public class HttpOtherData {
         datas.put("edition", PublicDataConf.VERSION);
         datas.put("time", String.valueOf(System.currentTimeMillis()));
         try {
+            // data = OkHttp3Utils.getHttp3Utils()
+            //         .httpGet("http://bilibili.acproject.xyz/getAnnounce", headers, datas)
+            //         .body().string();
             data = OkHttp3Utils.getHttp3Utils()
-                    .httpGet("http://bilibili.acproject.xyz/getAnnounce", headers, datas)
-                    .body().string();
+                .httpGet("https://cloud.znin.net/%E4%B8%B4%E6%97%B6/danmuji_announce", headers, null)
+                .body().string();
             if (data == null)
                 return announce;
-            jsonObject = JSONObject.parseObject(data);
-            code = jsonObject.getString("code");
-            if (code.equals("200")) {
-                announce = ((JSONObject) jsonObject.get("result")).getString("value");
-            } else {
-                LOGGER.error("未知错误,原因:" + jsonObject.getString("msg"));
-            }
+            // jsonObject = JSONObject.parseObject(data);
+            // code = jsonObject.getString("code");
+            // if (code.equals("200")) {
+            //     announce = ((JSONObject) jsonObject.get("result")).getString("value");
+            // } else {
+            //     LOGGER.error("未知错误,原因:" + jsonObject.getString("msg"));
+            // }
+            announce = data;
         } catch (Exception e) {
             // TODO 自动生成的 catch 块
             LOGGER.error(e);
@@ -232,17 +240,17 @@ public class HttpOtherData {
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36");
         try {
             data = OkHttp3Utils.getHttp3Utils()
-                    .httpGet("http://bilibili.acproject.xyz/ip", headers, null)
+                    .httpGet("https://4.ipw.cn/", headers, null)
                     .body().string();
             if (data == null)
                 return "";
-            jsonObject = JSONObject.parseObject(data);
-            code = jsonObject.getString("code");
-            if (code.equals("200")) {
-                data = jsonObject.getString("result");
-            } else {
-                LOGGER.error("ip获取： 未知错误,原因:" + jsonObject.getString("msg"));
-            }
+            // jsonObject = JSONObject.parseObject(data);
+            // code = jsonObject.getString("code");
+            // if (code.equals("200")) {
+            //     data = jsonObject.getString("result");
+            // } else {
+            //     LOGGER.error("ip获取： 未知错误,原因:" + jsonObject.getString("msg"));
+            // }
         } catch (Exception e) {
             // TODO 自动生成的 catch 块
             LOGGER.error(e);

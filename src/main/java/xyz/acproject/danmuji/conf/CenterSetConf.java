@@ -96,6 +96,8 @@ public class CenterSetConf implements Serializable {
     //每次登录最大尝试次数
     private int manager_maxSize = 10;
 
+    private String connect_docket = "ws://localhost:23333/danmu/sub";
+
     //-------------------------以下设置需要用户登录后----------------------------------------
     //是否开启用户在线心跳线程
     @JSONField(name = "is_online")
@@ -139,6 +141,11 @@ public class CenterSetConf implements Serializable {
 
     @JSONField(name = "edition",serialize = false)
     private String edition = "";
+
+
+
+    @JSONField(name = "test_mode")
+    private boolean test_mode = false;
 
     public static CenterSetConf getInitCenterSetConf(){
         CenterSetConf centerSetConf = new CenterSetConf();

@@ -375,7 +375,7 @@ public class WebController {
     @ResponseBody
     @GetMapping(value = "/checkupdate")
     public Response<?> checkUpdate(HttpServletRequest req) {
-        String edition = PublicDataConf.centerSetConf.getPrivacy().is_open()?PublicDataConf.VERSION :HttpOtherData.httpGetNewEdition();
+        String edition = PublicDataConf.centerSetConf.getPrivacy().is_open()?PublicDataConf.VERSION :HttpOtherData.httpGetNewEditionV2ByGitHub();
         EditionResult editionResult = new EditionResult();
         editionResult.setEdition(edition);
         if (StringUtils.isNotBlank(edition)) {
@@ -386,6 +386,7 @@ public class WebController {
                 PublicDataConf.INIT_CHECK_EDITION=true;
                 if (!edition.equals(PublicDataConf.VERSION)) {
                     editionResult.setStatus(0);
+                    editionResult.setUrl(PublicDataConf.NEW_VERSION_DOWNLOAD_URL);
                     return Response.success(editionResult, req);
                 } else {
                     editionResult.setStatus(1);
@@ -401,7 +402,7 @@ public class WebController {
     @ResponseBody
     @GetMapping(value = "/getNewEdition")
     public Response<?> getNewEdition(HttpServletRequest req) {
-        String edition = PublicDataConf.centerSetConf.getPrivacy().is_open()?PublicDataConf.VERSION :HttpOtherData.httpGetNewEdition();
+        String edition = PublicDataConf.centerSetConf.getPrivacy().is_open()?PublicDataConf.VERSION :HttpOtherData.httpGetNewEditionV2ByGitHub();
         if (StringUtils.isNotBlank(edition)) {
             if (edition.equals("获取公告失败")) {
                 return Response.success(-1, req);

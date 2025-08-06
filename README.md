@@ -1,6 +1,5 @@
 [![Github](https://img.shields.io/github/stars/BanqiJane/Bilibili_Danmuji?logo=github&style=flat)](https://github.com/BanqiJane/Bilibili_Danmuji)
 [![GitHub release](https://img.shields.io/github/v/release/BanqiJane/Bilibili_Danmuji.svg)](https://github.com/BanqiJane/Bilibili_Danmuji/releases)
-[![使用IntelliJ IDEA开发维护](https://img.shields.io/badge/IntelliJ%20IDEA-%E6%94%AF%E6%8C%81-blue.svg)](https://www.jetbrains.com/?from=Bilibili_Danmuji)
 [![License](https://img.shields.io/badge/License-GPL--3.0-green.svg)](https://opensource.org/licenses/GPL-3.0)
 
 
@@ -56,14 +55,11 @@ java version "1.8.0_121"
   </tbody>
 </table>
 
-# 版本2.7.0.2
+# 版本2.7.0.5
 
-- **danmuji(常规版本 需要java环境) [地址](https://github.com/cnxysoft/Bilibili_Danmuji/releases "下载地址")**<br/><br/>
-
-## 其余版本暂不发布
-
+- **danmuji(常规版本 需要java环境) [地址](https://github.com/BanqiJane/Bilibili_Danmuji/releases/tag/2.7.0.5 "下载地址")**<br/><br/>
 - **danmuji-green(
-  window64绿色版本，不用配置安装java环境) [地址](https://github.com/BanqiJane/Bilibili_Danmuji/releases/tag/2.7.0.2 "下载地址")**<br/><br/>
+  window64绿色版本，不用配置安装java环境) [地址](https://github.com/BanqiJane/Bilibili_Danmuji/releases/tag/2.7.0.5 "下载地址")**<br/><br/>
 - ~~**danmuji-docker(docker版本,由B站用户[西凉君君](https://live.bilibili.com/101937 "B站主页地址")提供
   在此感谢) [地址](https://registry.hub.docker.com/r/xilianghe/danmuji "地址")**~~<br/><br/>
 - **danmuji-docker(全框架docker镜像构建版本,由github用户[zzcabc](https://github.com/zzcabc "GitHub主页")提供
@@ -354,6 +350,21 @@ $ java -jar BiliBili_Danmuji-2.7.0.0beta.jar
 
 <blockquote>
 <blockquote>
+<h2>Beta2.7.0.5</h2>
+<p>修复弹幕姬欢迎不了舰长问题</p>
+<p>欢迎姬欢迎舰长模式现在变成仅欢迎本房间舰长了</p>
+<p>更换公告地址</p>
+</blockquote>
+<blockquote>
+<h2>Beta2.7.0.4</h2>
+<p>可以保存弹幕网页连接websocket地址了</p> 
+<p>广告姬添加随机时间</p> 
+<p>修复禁言不生效的问题</p> 
+<p>修复部分新直播间关注欢迎等看不到的问题</p> 
+<p>修改部分说明</p> 
+<p>修复部分已知bug</p>
+</blockquote>
+<blockquote>
 <h2>Beta2.7.0.0</h2>
 <p>小改弹幕姬控制面板ui</p>
 <p>添加mac系统打开和unix系系统弹幕姬启动打开浏览器控制面板</p>
@@ -599,10 +610,3 @@ $ java -jar BiliBili_Danmuji-2.7.0.0beta.jar
 </blockquote>
 </blockquote>  
 
-## SUPPORT
-
-JetBrains OPEN SOURCE SUPPORT
-
-<a href="https://jb.gg/OpenSourceSupport">
-  <img src="https://user-images.githubusercontent.com/8643542/160519107-199319dc-e1cf-4079-94b7-01b6b8d23aa6.png" align="left" height="150" width="150" alt="JetBrains">
-</a>

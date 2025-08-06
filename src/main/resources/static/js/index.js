@@ -367,6 +367,7 @@ $(document)
 
         });
 $(document).on('click', '.reply_delete', function () {
+
     $(this).parent().parent().remove();
     if ($(".auto_save_set").is(':checked')) {
         method.saveSet();
@@ -490,7 +491,8 @@ $(document).on('click', '#checkupdate', function () {
     $.when(method.checkUpdate()).done(function (data) {
         let num = Number(data.result.status);
         if (num === 0) {
-            $("#edition_content").html(`有新版本(最新版本<span style="color:red;">:` + data.result.edition + `</span>)更新，请前往<a href="https://github.com/BanqiJane/Bilibili_Danmuji/releases/tag/` + data.result.edition + `">github</a>获取更新`);
+            // $("#edition_content").html(`有新版本(最新版本<span style="color:red;">:` + data.result.edition + `</span>)更新，请前往<a href="https://github.com/BanqiJane/Bilibili_Danmuji/releases/tag/` + data.result.edition + `">github</a>获取更新`);
+            $("#edition_content").html(`有新版本(最新版本<span style="color:red;">:` + data.result.edition + `</span>)更新，请前往<a href="`+data.result.url+`">github</a>获取更新`);
         } else if (num === 1) {
             $("#edition_content").html("当前为最新版本，无需更新");
         } else {
@@ -749,10 +751,12 @@ const method = {
         /* 管理登录 */
         set.is_manager_login = $(".is_manager_login").is(':checked');
         set.manager_maxSize = Number($(".manager_maxSize").val());
+        set.connect_docket = $(".connect-docket").val();
         //密码就不set给前端了
         set.manager_key = $(".manager_key").val();
         /* 管理结束*/
         set.is_sh = $(".is_sh").is(':checked');
+        set.test_mode = $(".is_test_mode").is(':checked');
         set.is_dosign = $(".is_dosign").is(':checked');
         set.sign_time = method.time_parse($(".sign_time").val());
         set.thank_gift.is_open = $(".thankgift_is_open").is(':checked');
@@ -821,6 +825,7 @@ const method = {
         set.advert.status = Number($(".advert_status").find(
             "option:selected").val()) - 1;
         set.advert.time = Number($(".advert_time").val());
+        set.advert.time2 = Number($(".advert_time2").val());
         set.advert.adverts = $(".advert_adverts").val();
         set.follow.is_open = $(".follow_is_open").is(':checked');
         set.follow.is_live_open = $(".follow_is_live_open").is(':checked');
@@ -830,6 +835,7 @@ const method = {
         set.follow.follows = $(".follow_follows").val();
         set.follow.delaytime = Number($(".thankfollow_delaytime").val());
         set.welcome.is_open = $(".welcome_is_open").is(':checked');
+        set.welcome.is_open_self = $(".welcome_is_open_self").is(':checked');
         set.welcome.is_live_open = $(".welcome_is_live_open").is(':checked');
         set.welcome.is_tx_shield = $(".welcome_tx_shield").is(':checked');
         set.welcome.is_rd_shield = $(".welcome_rd_shield").is(':checked');
@@ -1048,9 +1054,11 @@ const method = {
             $(".is_welcome_all").prop('checked', set.is_welcome_all);
             $(".is_follow").prop('checked', set.is_follow_dm);
             $(".is_log").prop('checked', set.log);
+            $(".is_test_mode").prop('checked', set.test_mode);
             /* 登录暗号                                      */
             $(".is_manager_login").prop('checked', set.is_manager_login);
             $(".manager_maxSize").val(set.manager_maxSize);
+            $(".connect-docket").val(set.connect_docket);
             /**/
             $(".is_online").prop('checked', set.is_online);
             $(".is_sh").prop('checked', set.is_sh);
@@ -1095,6 +1103,7 @@ const method = {
             $(".advert_status").find("option").eq(set.advert.status).prop(
                 'selected', true)
             $(".advert_time").val(set.advert.time);
+            $(".advert_time2").val(set.advert.time2);
             $(".advert_adverts").val(set.advert.adverts);
             $(".follow_is_open").prop('checked', set.follow.is_open);
             $(".follow_is_live_open").prop('checked', set.follow.is_live_open);
@@ -1104,6 +1113,7 @@ const method = {
             $(".follow_follows").val(set.follow.follows);
             $(".thankfollow_delaytime").val(set.follow.delaytime);
             $(".welcome_is_open").prop('checked', set.welcome.is_open);
+            $(".welcome_is_open_self").prop('checked', set.welcome.is_open_self);
             $(".welcome_is_live_open").prop('checked', set.welcome.is_live_open);
             $(".welcome_tx_shield").prop('checked', set.welcome.is_tx_shield);
             $(".welcome_rd_shield").prop('checked', set.welcome.is_rd_shield);
@@ -1268,6 +1278,7 @@ const method = {
                 $(".advert_is_live_open").attr("disabled", true);
                 $(".advert_status").attr("disabled", true);
                 $(".advert_time").attr("disabled", true);
+                $(".advert_time2").attr("disabled", true);
                 $(".advert_adverts").attr("disabled", true);
                 $(".follow_is_open").attr("disabled", true);
                 $(".follow_is_live_open").attr("disabled", true);
@@ -1278,6 +1289,7 @@ const method = {
                 $(".thankfollow_delaytime").attr("disabled", true);
                 $(".welcome_is_open").attr("disabled", true);
                 $(".welcome_is_live_open").attr("disabled", true);
+                $(".welcome_is_open_self").attr("disabled", true);
                 $(".welcome_num").attr("disabled", true);
                 $(".welcome_welcomes").attr("disabled", true);
                 $(".welcome_tx_shield").attr("disabled", true);

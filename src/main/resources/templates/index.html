@@ -484,7 +484,18 @@
                                                min="1"
                                                onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"
                                                placeholder="time(s)"
-                                               style="ime-mode: Disabled" title="多少秒发送一次"
+                                               style="ime-mode: Disabled" title="多少秒发送一次（开始时间）"
+                                               type="number" value="1"
+                                               οninput="if(value.length>5)value=value.slice(0,5)">
+                                    </div>
+                                    <div
+                                            class="col-auto small-input-wrap">
+                                        <input class="small-input advert_time2 live-save" data-bs-placement="top"
+                                               data-bs-toggle="tooltip"
+                                               min="0"
+                                               onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))"
+                                               placeholder="time(s)"
+                                               style="ime-mode: Disabled" title="多少秒发送一次（结束时间；0是关闭随机且固定开始时间）"
                                                type="number" value="1"
                                                οninput="if(value.length>5)value=value.slice(0,5)">
                                     </div>
@@ -798,6 +809,15 @@
                                     </div>
                                     <div class="col-auto">
                                         <label class="form-check-label"> <input
+                                                class="form-check-input welcome_is_open_self live-save"
+                                                type="checkbox">
+                                            <span class="_description" data-bs-html="true"
+                                                  data-bs-placement="top" data-bs-toggle="tooltip"
+                                                  title="是否识别来着自己的欢迎（默认不识别来着自己的欢迎）">自己</span>
+                                        </label>
+                                    </div>
+                                    <div class="col-auto">
+                                        <label class="form-check-label"> <input
                                                 class="form-check-input welcome_tx_shield live-save" type="checkbox">
                                             <span class="_description" data-bs-placement="top"
                                                   data-bs-toggle="tooltip"
@@ -837,7 +857,7 @@
                                         <select class="custom-select-sm welcome_list_people_shield_status live-save"
                                                 data-bs-html="true" data-bs-placement="top" data-bs-toggle="tooltip"
 
-                                                title="用户类型过滤：<br/>①:不屏蔽；<br/>②:仅佩戴本房间勋章；<br/>③:仅舰长；注：所有舰长（不仅限于本房间舰长）">
+                                                title="用户类型过滤：<br/>①:不屏蔽；<br/>②:仅佩戴本房间勋章；<br/>③:仅舰长；（2.7.0.5开始仅欢迎本房间舰长）">
                                             <option selected value="1">不屏蔽</option>
                                             <option value="2">仅勋章</option>
                                             <option value="3">仅舰长</option>
@@ -1172,6 +1192,25 @@
                             </div>
                         </div>
                         <!-- 实验性设置结束 -->
+                        <!-- 开发人员设置开始 -->
+                        <a data-bs-toggle="collapse" data-target="#testmode-set"
+                           href="#testmode-set"><div class="input-group mb-1">
+                            <h5>开发人员设置</h5>
+                        </div></a>
+                        <div class="input-group mb-3 testmode-set collapse" id="testmode-set">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <label class="form-check-label"> <input class="form-check-input is_test_mode live-save"
+                                                                            type="checkbox">
+                                        <span
+                                                class="_description" data-bs-html="true"
+                                                data-bs-placement="top" data-bs-toggle="tooltip"
+                                                title="是否打开调试，弹幕将不会发送仅在控制台打印">调试</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 开发人员设置结束 -->
                         <!-- 底部按钮开始 -->
 <!--                        <div class="input-group mb-3 set-control">
                             <div class="col-auto">
@@ -1200,7 +1239,7 @@
                 <!-- 底部展示开始 -->
                 <div class="card-footer">
                     <div class="author-message">
-                        B站直播java版弹幕姬 © 2020-2023 <a href="https://space.bilibili.com/17418088"
+                        B站直播java版弹幕姬 © 2020-2025 <a href="https://space.bilibili.com/17418088"
                                                            target="_blank"> B站 </a>|<a
                             data-bs-placement="top"
                             data-bs-toggle="tooltip" href="https://github.com/BanqiJane/Bilibili_Danmuji"
@@ -1357,7 +1396,7 @@
                         <li><textarea class="reply_rs_i reply-sync" data-bs-html="true"
                                       data-bs-placement="top" data-bs-toggle="tooltip"
                                       placeholder="回复语句"
-                                      title="回复语句<br/>多个回复请换行<br/>1：参数%NAME%以替换提问的人的名字<br/>2：参数%BLOCK%表示该功能为禁言，将被替换为空,参数{{time}}定义被禁言时间,单位为整数小时，在有%BLOCK%参数下才生效，将被替换为空，例如要禁言一小时：<span class='red-font'>%BLOCK%{{1}}</span> ；<span class='red-font'>当只有这两个参数，不会发送回复弹幕，只会执行禁言，这两个参数 最终都会在回复语句中消除</span>，time最大720,最小1<br/>3：参数%FANS%以替换现在连接房间的最新关注数目<br/>4：参数%TIME%以替换当前时间<br/>5：参数%LIVETIME%以替换当前房间直播时间<br/>6：参数%HOT%以替换当前房间人气值<br/>更多参数请看github主页"></textarea>
+                                      title="回复语句（支持随机词回复）<br/>随机回复：设置多个请换行即可<br/>1：参数%NAME%以替换提问的人的名字<br/>2：参数%BLOCK%表示该功能为禁言，将被替换为空,参数{{time}}定义被禁言时间,单位为整数小时，在有%BLOCK%参数下才生效，将被替换为空，例如要禁言一小时：<span class='red-font'>%BLOCK%{{1}}</span> ；<span class='red-font'>当只有这两个参数，不会发送回复弹幕，只会执行禁言，这两个参数 最终都会在回复语句中消除</span>，time最大720,最小1<br/>3：参数%FANS%以替换现在连接房间的最新关注数目<br/>4：参数%TIME%以替换当前时间<br/>5：参数%LIVETIME%以替换当前房间直播时间<br/>6：参数%HOT%以替换当前房间人气值<br/>更多参数请看github主页"></textarea>
                         </li>
                         <li>
                             <button class="btn btn-danger btn-sm reply_delete_i"

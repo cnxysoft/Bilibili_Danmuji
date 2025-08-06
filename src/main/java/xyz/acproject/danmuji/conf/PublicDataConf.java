@@ -156,6 +156,7 @@ public class PublicDataConf {
 	public static String VERSION ="";
 
 	public static String NEW_VERSION ="";
+	public static String NEW_VERSION_DOWNLOAD_URL ="";
 
 	public static String ANNOUNCE = null;
 
@@ -173,12 +174,6 @@ public class PublicDataConf {
 //
 	//可以赠送礼物集合 要初始化
 	public static Map<Integer,AutoSendGift> autoSendGiftMap = null;
-
-
-
-	//测试模式
-	public static boolean TEST_MODE = false;
-
 
 
 	//方法区
